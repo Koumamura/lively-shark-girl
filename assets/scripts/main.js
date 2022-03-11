@@ -4,7 +4,7 @@ const rightEye = document.getElementById("right-eye");
 let width = window.innerWidth;
 let height = window.innerHeight;
 
-document.addEventListener("resize", () => {
+window.addEventListener("resize", () => {
   width = window.innerWidth;
   height = window.innerHeight;
 });
@@ -49,23 +49,6 @@ document.addEventListener(
 
     computeLeftEye();
     computeRightEye();
-
-    console.log(x, y);
   },
   { passive: true }
 );
-
-/**
- *
- * @param {number} x
- * @param {number} y
- * @returns {number}
- */
-function arcctx(x, y) {
-  const { PI } = Math;
-
-  if (x > 0 && x > 0) return PI / 2 - Math.atan(x / y);
-  if (x < 0 && y > 0) return PI / 2 - Math.atan(x / y);
-  if (x < 0 && y < 0) return PI + Math.atan(y / x);
-  if (x > 0 && y < 0) return (3 * PI) / 2 + Math.abs(Math.atan(x / y));
-}
