@@ -114,7 +114,7 @@ const drawGirl = (ctx) => {
 const drawMouth = (ctx) => {
   const { mouth } = ASSETS;
 
-  const width = percent(10, canvas.height);
+  const width = percent(9, canvas.height);
   const scale = width / mouth.width;
 
   const height = mouth.height * scale;
@@ -205,11 +205,8 @@ function draw() {
 
   // !TODO: FIX THE POSITION OF LEFT EYE ON THE DIFFERENT SCREENS
 
-  const xOffsetLeft = percent(41.5, canvas.width);
-  const xOffsetRight = percent(49, canvas.width);
-
-  ctx.drawImage(left_eye, xOffsetLeft + x, yOffset + y, radius, radius);
-  ctx.drawImage(right_eye, xOffsetRight + x, yOffset + y, radius, radius);
+  ctx.drawImage(left_eye, center - 180 + x, yOffset + y, radius, radius);
+  ctx.drawImage(right_eye, center + x, yOffset + y, radius, radius);
 
   drawGirl(ctx);
 
