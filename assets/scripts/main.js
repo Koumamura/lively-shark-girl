@@ -97,6 +97,10 @@ const drawGirl = (ctx) => {
 
 init();
 
+/**
+ * @param {number} x
+ * @param {number} y
+ */
 const percent = (x, y) => {
   return (x / 100) * y;
 };
@@ -130,7 +134,7 @@ function draw() {
     ctx.arc(
       center + x,
       canvas.height / 2 - thirteenPercent / 2,
-      thirteenPercent,
+      thirteenPercent * 0.7,
       0,
       2 * Math.PI
     );
