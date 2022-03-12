@@ -1,3 +1,11 @@
+/**
+ * @param {number} x
+ * @param {number} y
+ */
+const percent = (x, y) => {
+  return (x / 100) * y;
+};
+
 /** @type {HTMLCanvasElement} */
 const canvas = document.getElementById("canvas");
 
@@ -37,6 +45,7 @@ const ASSETS = {
   girl: createImage(),
   left_eye: createImage(),
   right_eye: createImage(),
+  mouth: createImage(),
 };
 
 function init() {
@@ -45,6 +54,7 @@ function init() {
   ASSETS.girl.src = "/assets/images/girl.png";
   ASSETS.left_eye.src = "/assets/images/left-eye.png";
   ASSETS.right_eye.src = "/assets/images/right-eye.png";
+  ASSETS.mouth.src = "/assets/images/mouth.png";
 
   requestAnimationFrame(draw);
 }
@@ -97,15 +107,25 @@ const drawGirl = (ctx) => {
   );
 };
 
-init();
-
 /**
- * @param {number} x
- * @param {number} y
+ * Draws mouth
+ * @param {CanvasRenderingContext2D} ctx
  */
-const percent = (x, y) => {
-  return (x / 100) * y;
+const drawMouth = (ctx) => {
+  const { mouth } = ASSETS;
+
+  const width = percent(10, canvas.height);
+  const scale = width / mouth.width;
+
+  const height = mouth.height * scale;
+
+  const x = canvas.width / 2 - width / 2;
+  const y = percent(55, canvas.height);
+
+  ctx.drawImage(mouth, x, y, width, height);
 };
+
+init();
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -121,7 +141,6 @@ function draw() {
 
   gradient.addColorStop(0, "#babfcc");
   gradient.addColorStop(1, "#ffffff");
-  // gradient.addColorStop(1, "red");
 
   ctx.fillStyle = gradient;
   ctx.beginPath();
@@ -146,28 +165,34 @@ function draw() {
     );
   };
 
-  // console.log(radius);
-  // console.log(PI * radius * 2);
-
   drawEyeball(-thirteenPercent);
   drawEyeball(thirteenPercent);
 
   ctx.fill();
 
   let { x, y } = MousePosition;
+  const { left_eye, right_eye } = ASSETS;
 
   x /= canvas.width;
   y /= canvas.height;
 
-  console.log({ x, y });
+  let open_mount = false;
 
-  if (y < 0.37) {
+  if (y < 0.49) {
+    open_mount = true;
+  }
+
+  if (y === 0) {
+    y = 0.5;
+  } else if (y < 0.37) {
     y = 0.37;
   } else if (y > 0.75) {
     y = 0.75;
   }
 
-  if (x < 0.23) {
+  if (x === 0) {
+    x = 0.5;
+  } else if (x < 0.23) {
     x = 0.23;
   } else if (x > 0.77) {
     x = 0.77;
@@ -178,23 +203,21 @@ function draw() {
 
   const yOffset = percent(36.5, canvas.height);
 
-  ctx.drawImage(
-    ASSETS.left_eye,
-    percent(36.25, canvas.width) + x,
-    yOffset + y,
-    radius,
-    radius
-  );
+  // !TODO: FIX THE POSITION OF LEFT EYE ON THE DIFFERENT SCREENS
 
-  ctx.drawImage(
-    ASSETS.right_eye,
-    percent(49, canvas.width) + x,
-    yOffset + y,
-    radius,
-    radius
-  );
+  const xOffsetLeft = percent(41.5, canvas.width);
+  const xOffsetRight = percent(49, canvas.width);
+
+  ctx.drawImage(left_eye, xOffsetLeft + x, yOffset + y, radius, radius);
+  ctx.drawImage(right_eye, xOffsetRight + x, yOffset + y, radius, radius);
 
   drawGirl(ctx);
+
+  if (open_mount) {
+    drawMouth(ctx);
+  }
+
+  // console.log({ x, y });
 
   requestAnimationFrame(draw);
 }
