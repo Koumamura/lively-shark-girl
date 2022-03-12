@@ -25,6 +25,8 @@ const updateMousePosition = (event) => {
 document.addEventListener("mousemove", updateMousePosition);
 document.addEventListener("mouseenter", updateMousePosition, false);
 
+const { PI } = Math;
+
 const ctx = canvas.getContext("2d");
 
 const createImage = () => document.createElement("img");
@@ -32,17 +34,17 @@ const createImage = () => document.createElement("img");
 const ASSETS = {
   bubble: createImage(),
   coral: createImage(),
-  follow: createImage(),
-  eyesBG: createImage(),
   girl: createImage(),
+  left_eye: createImage(),
+  right_eye: createImage(),
 };
 
 function init() {
   ASSETS.bubble.src = "/assets/images/bubble.png";
   ASSETS.coral.src = "/assets/images/coral.png";
-  ASSETS.follow.src = "/assets/images/follow.png";
-  ASSETS.eyesBG.src = "/assets/images/eyes-background.png";
   ASSETS.girl.src = "/assets/images/girl.png";
+  ASSETS.left_eye.src = "/assets/images/left-eye.png";
+  ASSETS.right_eye.src = "/assets/images/right-eye.png";
 
   requestAnimationFrame(draw);
 }
@@ -119,6 +121,7 @@ function draw() {
 
   gradient.addColorStop(0, "#babfcc");
   gradient.addColorStop(1, "#ffffff");
+  // gradient.addColorStop(1, "red");
 
   ctx.fillStyle = gradient;
   ctx.beginPath();
@@ -127,6 +130,9 @@ function draw() {
 
   const thirteenPercent = percent(9, canvas.height);
 
+  const radius = thirteenPercent * 0.7;
+  const diameter = radius * 2;
+
   /**
    * @param {number} x
    */
@@ -134,16 +140,59 @@ function draw() {
     ctx.arc(
       center + x,
       canvas.height / 2 - thirteenPercent / 2,
-      thirteenPercent * 0.7,
+      radius,
       0,
-      2 * Math.PI
+      2 * PI
     );
   };
+
+  // console.log(radius);
+  // console.log(PI * radius * 2);
 
   drawEyeball(-thirteenPercent);
   drawEyeball(thirteenPercent);
 
   ctx.fill();
+
+  let { x, y } = MousePosition;
+
+  x /= canvas.width;
+  y /= canvas.height;
+
+  console.log({ x, y });
+
+  if (y < 0.37) {
+    y = 0.37;
+  } else if (y > 0.75) {
+    y = 0.75;
+  }
+
+  if (x < 0.23) {
+    x = 0.23;
+  } else if (x > 0.77) {
+    x = 0.77;
+  }
+
+  x *= diameter;
+  y *= diameter;
+
+  const yOffset = percent(36.5, canvas.height);
+
+  ctx.drawImage(
+    ASSETS.left_eye,
+    percent(36.25, canvas.width) + x,
+    yOffset + y,
+    radius,
+    radius
+  );
+
+  ctx.drawImage(
+    ASSETS.right_eye,
+    percent(49, canvas.width) + x,
+    yOffset + y,
+    radius,
+    radius
+  );
 
   drawGirl(ctx);
 
