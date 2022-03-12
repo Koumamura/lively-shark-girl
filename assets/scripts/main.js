@@ -17,6 +17,20 @@ const updateCanvasSizes = () => {
 window.addEventListener("load", updateCanvasSizes);
 window.addEventListener("resize", updateCanvasSizes);
 
+let leftEyeNegativeOffset = 180;
+
+/**
+ * https://github.com/rocksdanister/lively/wiki/Web-Guide-IV-:-Interaction#lively-properties
+ * @param {string} name
+ * @param {string | number} value
+ */
+const livelyPropertyListener = (name, value) => {
+  if (name === "leftEyeNegativeOffset") {
+    const float = parseFloat(value);
+    leftEyeNegativeOffset = isNaN(float) || !isFinite(float) ? 0 : float;
+  }
+};
+
 const MousePosition = {
   x: 0,
   y: 0,
@@ -205,7 +219,13 @@ function draw() {
 
   // !TODO: FIX THE POSITION OF LEFT EYE ON THE DIFFERENT SCREENS
 
-  ctx.drawImage(left_eye, center - 180 + x, yOffset + y, radius, radius);
+  ctx.drawImage(
+    left_eye,
+    center - leftEyeNegativeOffset + x,
+    yOffset + y,
+    radius,
+    radius
+  );
   ctx.drawImage(right_eye, center + x, yOffset + y, radius, radius);
 
   drawGirl(ctx);

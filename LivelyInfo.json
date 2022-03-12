@@ -1,0 +1,11 @@
+{
+  "AppVersion": "1.7.x.x",
+  "Title": "Девочка-окула",
+  "Desc": "Она будет прияглядывать за вашим курсором",
+  "Author": "Artemiy69",
+  "License": "MIT",
+  "Type": 1,
+  "FileName": "index.html",
+  "Arguments": null,
+  "IsAbsolutePath": false
+}

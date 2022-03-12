@@ -1,0 +1,7 @@
+{
+  "leftEyeNegativeOffset": {
+    "text": "Введите отрицательное смещение левого глаза",
+    "type": "textbox",
+    "value": "180"
+  }
+}
