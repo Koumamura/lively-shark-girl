@@ -48,8 +48,8 @@ function init() {
 }
 
 const createStaticBackgroundDrawer = () => {
-  /** @type {Map<string, number>} */
-  const map = new Map();
+  let bubbleRatio = 0;
+  let coralRatio = 0;
 
   const { coral, bubble } = ASSETS;
 
@@ -58,13 +58,10 @@ const createStaticBackgroundDrawer = () => {
    * @param {CanvasRenderingContext2D} ctx
    */
   return (ctx) => {
-    if (!map.has("bubble-ratio") || !map.has("coral-ratio")) {
-      map.set("bubble-ratio", bubble.height / bubble.width);
-      map.set("coral-ratio", coral.height / coral.width);
+    if (!bubbleRatio || !coralRatio) {
+      bubbleRatio = bubble.height / bubble.width;
+      coralRatio = coral.height / coral.width;
     }
-
-    const bubbleRatio = map.get("bubble-ratio");
-    const coralRatio = map.get("coral-ratio");
 
     const bubbleWidth = canvas.height / bubbleRatio;
     const coralWidth = canvas.height / coralRatio;
