@@ -1,54 +1,150 @@
-const leftEye = document.getElementById("left-eye");
-const rightEye = document.getElementById("right-eye");
+/** @type {HTMLCanvasElement} */
+const canvas = document.getElementById("canvas");
 
-let width = window.innerWidth;
-let height = window.innerHeight;
+const updateCanvasSizes = () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+};
 
-window.addEventListener("resize", () => {
-  width = window.innerWidth;
-  height = window.innerHeight;
-});
+window.addEventListener("load", updateCanvasSizes);
+window.addEventListener("resize", updateCanvasSizes);
 
-document.addEventListener(
-  "mousemove",
-  (event) => {
-    let x = event.x - width / 2 + 15;
-    let y = event.y - height / 2 + 20;
+const MousePosition = {
+  x: 0,
+  y: 0,
+};
 
-    const computeLeftEye = () => {
-      let tx = (() => {
-        if (x > 10) return 10;
-        if (x < -20) return -20;
-        return x;
-      })();
+/**
+ * @param {MouseEvent} event
+ */
+const updateMousePosition = (event) => {
+  MousePosition.x = event.pageX;
+  MousePosition.y = event.pageY;
+};
 
-      let ty = (() => {
-        if (y > 10) return 10;
-        if (y < -20) return -20;
-        return y;
-      })();
+document.addEventListener("mousemove", updateMousePosition);
+document.addEventListener("mouseenter", updateMousePosition, false);
 
-      leftEye.style.transform = `translate(${tx}px, ${ty}px)`;
-    };
+const ctx = canvas.getContext("2d");
 
-    const computeRightEye = () => {
-      let tx = (() => {
-        if (x > 20) return 20;
-        if (x < -20) return -20;
-        return x;
-      })();
+const createImage = () => document.createElement("img");
 
-      let ty = (() => {
-        if (y > 10) return 10;
-        if (y < -20) return -20;
-        return y;
-      })();
+const ASSETS = {
+  bubble: createImage(),
+  coral: createImage(),
+  follow: createImage(),
+  eyesBG: createImage(),
+  girl: createImage(),
+};
 
-      rightEye.style.transform = `translate(${tx}px, ${ty}px)`;
-    };
+function init() {
+  ASSETS.bubble.src = "/assets/images/bubble.png";
+  ASSETS.coral.src = "/assets/images/coral.png";
+  ASSETS.follow.src = "/assets/images/follow.png";
+  ASSETS.eyesBG.src = "/assets/images/eyes-background.png";
+  ASSETS.girl.src = "/assets/images/girl.png";
 
-    computeLeftEye();
-    computeRightEye();
-  },
-  { passive: true }
-);
+  requestAnimationFrame(draw);
+}
+
+const createStaticBackgroundDrawer = () => {
+  /** @type {Map<string, number>} */
+  const map = new Map();
+
+  const { coral, bubble } = ASSETS;
+
+  /**
+   * Draws the static background, which contains bubble and coral
+   * @param {CanvasRenderingContext2D} ctx
+   */
+  return (ctx) => {
+    if (!map.has("bubble-ratio") || !map.has("coral-ratio")) {
+      map.set("bubble-ratio", bubble.height / bubble.width);
+      map.set("coral-ratio", coral.height / coral.width);
+    }
+
+    const bubbleRatio = map.get("bubble-ratio");
+    const coralRatio = map.get("coral-ratio");
+
+    const bubbleWidth = canvas.height / bubbleRatio;
+    const coralWidth = canvas.height / coralRatio;
+
+    ctx.drawImage(bubble, 0, 0, bubbleWidth, canvas.height);
+    ctx.drawImage(
+      coral,
+      canvas.width - coralWidth,
+      0,
+      coralWidth,
+      canvas.height
+    );
+  };
+};
+
+const drawStaticBackground = createStaticBackgroundDrawer();
+
+/**
+ * Draws girl
+ * @param {CanvasRenderingContext2D} ctx
+ */
+const drawGirl = (ctx) => {
+  const { girl } = ASSETS;
+
+  ctx.drawImage(
+    girl,
+    canvas.width / 2 - canvas.height / 2,
+    0,
+    canvas.height,
+    canvas.height
+  );
+};
+
+init();
+
+const percent = (x, y) => {
+  return (x / 100) * y;
+};
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  drawStaticBackground(ctx);
+
+  let gradient = ctx.createLinearGradient(
+    0,
+    canvas.height / 2.8,
+    0,
+    canvas.height / 2
+  );
+
+  gradient.addColorStop(0, "#babfcc");
+  gradient.addColorStop(1, "#ffffff");
+
+  ctx.fillStyle = gradient;
+  ctx.beginPath();
+
+  const center = canvas.width / 2;
+
+  const thirteenPercent = percent(9, canvas.height);
+
+  /**
+   * @param {number} x
+   */
+  const drawEyeball = (x) => {
+    ctx.arc(
+      center + x,
+      canvas.height / 2 - thirteenPercent / 2,
+      thirteenPercent,
+      0,
+      2 * Math.PI
+    );
+  };
+
+  drawEyeball(-thirteenPercent);
+  drawEyeball(thirteenPercent);
+
+  ctx.fill();
+
+  drawGirl(ctx);
+
+  requestAnimationFrame(draw);
+}
