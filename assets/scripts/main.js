@@ -18,6 +18,7 @@ window.addEventListener("load", updateCanvasSizes);
 window.addEventListener("resize", updateCanvasSizes);
 
 let leftEyeNegativeOffset = 180;
+let ahegaoTrigger = 39;
 
 /**
  * https://github.com/rocksdanister/lively/wiki/Web-Guide-IV-:-Interaction#lively-properties
@@ -28,6 +29,9 @@ const livelyPropertyListener = (name, value) => {
   if (name === "leftEyeNegativeOffset") {
     const float = parseFloat(value);
     leftEyeNegativeOffset = isNaN(float) || !isFinite(float) ? 0 : float;
+  } else if (name === "ahegaoTrigger") {
+    const float = parseFloat(value);
+    ahegaoTrigger = isNaN(float) || !isFinite(float) ? 0 : float;
   }
 };
 
@@ -192,7 +196,7 @@ function draw() {
 
   let open_mount = false;
 
-  if (y < 0.49) {
+  if (y * 100 < ahegaoTrigger) {
     open_mount = true;
   }
 

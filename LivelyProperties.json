@@ -3,5 +3,13 @@
     "text": "Введите отрицательное смещение левого глаза",
     "type": "textbox",
     "value": "180"
+  },
+  "ahegaoTrigger": {
+    "max": 100,
+    "min": 0,
+    "tick": 1,
+    "text": "Триггер открытия рта",
+    "type": "slider",
+    "value": 39
   }
 }
