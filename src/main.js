@@ -14,14 +14,6 @@ import { PI } from "./constants";
 /** @type {HTMLCanvasElement} */
 const canvas = document.getElementById("canvas");
 
-const { WindowSize } = createWindowSizeListener(() => {
-  canvas.width = WindowSize.width;
-  canvas.height = WindowSize.height;
-});
-
-canvas.width = WindowSize.width;
-canvas.height = WindowSize.height;
-
 let ahegaoTrigger = 39;
 
 /**
@@ -44,7 +36,16 @@ window.livelyPropertyListener = livelyPropertyListener;
 assetsLoaded.then(main);
 
 function main() {
-  const { MousePosition } = createMousePositionListener();
+  const { MousePosition } = createMousePositionListener(() => {
+    requestAnimationFrame(draw);
+  });
+
+  const { WindowSize } = createWindowSizeListener(() => {
+    canvas.width = WindowSize.width;
+    canvas.height = WindowSize.height;
+
+    requestAnimationFrame(draw);
+  });
 
   const ctx = canvas.getContext("2d");
 
@@ -122,6 +123,7 @@ function main() {
 
     const yOffset = percent(36.5, canvas.height);
 
+    // this is a magical number
     const eighteenAnd675 = percent(18.675, canvas.height);
 
     ctx.drawImage(
@@ -139,9 +141,5 @@ function main() {
     if (open_mount) {
       drawMouth(canvas, ctx);
     }
-
-    requestAnimationFrame(draw);
   };
-
-  requestAnimationFrame(draw);
 }

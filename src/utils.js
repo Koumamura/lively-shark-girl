@@ -8,7 +8,7 @@ export const percent = (x, y) => {
   return (x / 100) * y;
 };
 
-export const createMousePositionListener = () => {
+export const createMousePositionListener = (callback) => {
   const MousePosition = {
     x: 0,
     y: 0,
@@ -20,6 +20,8 @@ export const createMousePositionListener = () => {
   const updateMousePosition = (event) => {
     MousePosition.x = event.pageX;
     MousePosition.y = event.pageY;
+
+    callback && callback();
   };
 
   document.addEventListener("mousemove", updateMousePosition);
@@ -34,14 +36,15 @@ export const createWindowSizeListener = (callback) => {
     height: window.innerHeight,
   };
 
-  window.addEventListener("resize", () => {
+  const onSizeChanges = () => {
     WindowSize.width = window.innerWidth;
     WindowSize.height = window.innerHeight;
 
-    if (callback) {
-      callback();
-    }
-  });
+    callback && callback();
+  };
+
+  window.addEventListener("load", onSizeChanges);
+  window.addEventListener("resize", onSizeChanges);
 
   return { WindowSize };
 };
