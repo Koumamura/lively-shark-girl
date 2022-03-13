@@ -9,8 +9,8 @@ canvas#canvas {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-image: url("/assets/images/bubble.png"),
-    url("/assets/images/coral.png");
+  background-image: url("/assets/images/bubble.webp"),
+    url("/assets/images/coral.webp");
   background-repeat: no-repeat;
   background-position: left top, right top;
   background-size: contain;
