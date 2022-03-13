@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Artemis69/creepy-shark-girl.git"
+    "url": "git+https://github.com/Artemis69/lively-shark-girl.git"
   },
   "keywords": [
     "Gawr Gura",
@@ -17,11 +17,11 @@
     "Eyes Follow"
   ],
   "author": "Artemis69",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Artemis69/creepy-shark-girl/issues"
+    "url": "https://github.com/Artemis69/lively-shark-girl/issues"
   },
-  "homepage": "https://github.com/Artemis69/creepy-shark-girl#readme",
+  "homepage": "https://github.com/Artemis69/lively-shark-girl#readme",
   "devDependencies": {
     "rollup": "^2.70.0"
   }
