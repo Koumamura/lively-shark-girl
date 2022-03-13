@@ -17,7 +17,6 @@ const updateCanvasSizes = () => {
 window.addEventListener("load", updateCanvasSizes);
 window.addEventListener("resize", updateCanvasSizes);
 
-let leftEyeNegativeOffset = 180;
 let ahegaoTrigger = 39;
 
 /**
@@ -26,10 +25,7 @@ let ahegaoTrigger = 39;
  * @param {string | number} value
  */
 const livelyPropertyListener = (name, value) => {
-  if (name === "leftEyeNegativeOffset") {
-    const float = parseFloat(value);
-    leftEyeNegativeOffset = isNaN(float) || !isFinite(float) ? 0 : float;
-  } else if (name === "ahegaoTrigger") {
+  if (name === "ahegaoTrigger") {
     const float = parseFloat(value);
     ahegaoTrigger = isNaN(float) || !isFinite(float) ? 0 : float;
   }
@@ -221,15 +217,17 @@ function draw() {
 
   const yOffset = percent(36.5, canvas.height);
 
-  // !TODO: FIX THE POSITION OF LEFT EYE ON THE DIFFERENT SCREENS
-
   ctx.drawImage(
     left_eye,
-    center - leftEyeNegativeOffset + x,
+    center -
+      thirteenPercent *
+        /* TODO: Find out why this magic coefficient works */ 2.075 +
+      x,
     yOffset + y,
     radius,
     radius
   );
+
   ctx.drawImage(right_eye, center + x, yOffset + y, radius, radius);
 
   drawGirl(ctx);
@@ -237,8 +235,6 @@ function draw() {
   if (open_mount) {
     drawMouth(ctx);
   }
-
-  // console.log({ x, y });
 
   requestAnimationFrame(draw);
 }

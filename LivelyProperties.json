@@ -1,9 +1,4 @@
 {
-  "leftEyeNegativeOffset": {
-    "text": "Введите отрицательное смещение левого глаза",
-    "type": "textbox",
-    "value": "180"
-  },
   "ahegaoTrigger": {
     "max": 100,
     "min": 0,
