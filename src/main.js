@@ -126,19 +126,13 @@ function main() {
 
     ctx.drawImage(
       left_eye,
-      floor(center - eighteenAnd675 + x),
-      floor(yOffset + y),
+      center - eighteenAnd675 + x,
+      yOffset + y,
       radius,
       radius
     );
 
-    ctx.drawImage(
-      right_eye,
-      floor(center + x),
-      floor(yOffset + y),
-      radius,
-      radius
-    );
+    ctx.drawImage(right_eye, center + x, yOffset + y, radius, radius);
 
     drawGirl(canvas, ctx);
 
