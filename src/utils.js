@@ -1,4 +1,4 @@
-import { ASSETS } from "./assets";
+import { ASSETS } from "./assets.js";
 
 /**
  * @param {number} x
@@ -8,6 +8,9 @@ export const percent = (x, y) => {
   return (x / 100) * y;
 };
 
+/**
+ * @param {() => void} callback
+ */
 export const createMousePositionListener = (callback) => {
   const MousePosition = {
     x: 0,
@@ -21,7 +24,7 @@ export const createMousePositionListener = (callback) => {
     MousePosition.x = event.pageX;
     MousePosition.y = event.pageY;
 
-    callback && callback();
+    callback();
   };
 
   document.addEventListener("mousemove", updateMousePosition);
@@ -30,6 +33,9 @@ export const createMousePositionListener = (callback) => {
   return { MousePosition };
 };
 
+/**
+ * @param {() => void} callback
+ */
 export const createWindowSizeListener = (callback) => {
   const WindowSize = {
     width: window.innerWidth,
@@ -40,7 +46,7 @@ export const createWindowSizeListener = (callback) => {
     WindowSize.width = window.innerWidth;
     WindowSize.height = window.innerHeight;
 
-    callback && callback();
+    callback();
   };
 
   window.addEventListener("load", onSizeChanges);

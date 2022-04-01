@@ -1,12 +1,8 @@
 {
   "name": "lively-shark-girl",
-  "version": "0.1.0",
-  "description": "It will keep an eye on your cursor",
+  "version": "0.1.1",
+  "description": "She will keep an eye on your cursor",
   "private": true,
-  "scripts": {
-    "dev": "rollup -c -w",
-    "build": "rollup -c"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Artemis69/lively-shark-girl.git"
@@ -21,8 +17,5 @@
   "bugs": {
     "url": "https://github.com/Artemis69/lively-shark-girl/issues"
   },
-  "homepage": "https://github.com/Artemis69/lively-shark-girl#readme",
-  "devDependencies": {
-    "rollup": "^2.70.0"
-  }
+  "homepage": "https://github.com/Artemis69/lively-shark-girl#readme"
 }

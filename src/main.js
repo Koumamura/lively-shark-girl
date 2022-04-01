@@ -5,11 +5,11 @@ import {
   drawGirl,
   drawMouth,
   floor,
-} from "./utils";
+} from "./utils.js";
 
-import { ASSETS, loaded as assetsLoaded } from "./assets";
+import { ASSETS, loaded as assetsLoaded } from "./assets.js";
 
-import { PI } from "./constants";
+import { PI } from "./constants.js";
 
 /** @type {HTMLCanvasElement} */
 const canvas = document.getElementById("canvas");
