@@ -1,4 +1,5 @@
 import { ASSETS } from "./assets.js";
+import { devicePixelRatio } from './constants.js';
 
 /**
  * @param {number} x
@@ -21,8 +22,8 @@ export const createMousePositionListener = (callback) => {
    * @param {MouseEvent} event
    */
   const updateMousePosition = (event) => {
-    MousePosition.x = event.pageX;
-    MousePosition.y = event.pageY;
+    MousePosition.x = event.pageX * devicePixelRatio;
+    MousePosition.y = event.pageY * devicePixelRatio;
 
     callback();
   };
@@ -38,13 +39,13 @@ export const createMousePositionListener = (callback) => {
  */
 export const createWindowSizeListener = (callback) => {
   const WindowSize = {
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: window.innerWidth * devicePixelRatio,
+    height: window.innerHeight * devicePixelRatio,
   };
 
   const onSizeChanges = () => {
-    WindowSize.width = window.innerWidth;
-    WindowSize.height = window.innerHeight;
+    WindowSize.width = window.innerWidth * devicePixelRatio;
+    WindowSize.height = window.innerHeight * devicePixelRatio;
 
     callback();
   };

@@ -7,12 +7,13 @@ The Eyes-Follow Wallpapers with Shark Girl
 The wallpapers could be installed by two ways:
 
 - Install it like website. It is hosted on [Cloudflare Pages](https://creepy-shark-girl.pages.dev/) and on [Vercel](https://creepy-shark-girl.vercel.app/)
-- `git clone`, then `npm i`, `npm run build`. Then add these files and folders:
+- `git clone`, Then add these files and folders:
 
   - LivelyInfo.json
   - LivelyProperties.json
   - index.html
   - assets
+  - src
 
   to a .zip archive
 
