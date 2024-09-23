@@ -7,4 +7,22 @@
     "type": "slider",
     "value": 39
   }
+  ,
+  "RangeXPositiveLook":{
+    "max": 100,
+    "min": 50,
+    "tick": 10,
+    "text": " Limit looking right",
+    "type": "slider",
+    "value": 1250
+  }
+,
+"RangeXNegativeLook":{
+  "max": 50,
+  "min": 0,
+  "tick": 10,
+  "text": " Limit looking left",
+  "type": "slider",
+  "value": 65
+}
 }

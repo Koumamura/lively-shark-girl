@@ -15,6 +15,8 @@ import { PI } from "./constants.js";
 const canvas = document.getElementById("canvas");
 
 let ahegaoTrigger = 39;
+let xright = 90; //maximum limit of the mouse position on the right side of the screen, in percentage
+let xleft = 10;//maximum limit of the mouse position on the right side of the screen, in percentage
 let eyeX = 0.5;  // starting position  X-axis
 let eyeY = 0.5;  // starting position Y-axis
 
@@ -30,6 +32,15 @@ const livelyPropertyListener = (name, value) => {
     const float = parseFloat(value);
     ahegaoTrigger = isNaN(float) || !isFinite(float) ? 0 : float;
   }
+  if (name === "RangeXPositiveLook") {
+    const float = parseFloat(value);
+    xright= isNaN(float) || !isFinite(float) ? 0 : float;
+  }
+  if (name === "RangeXNegativeLook") {
+    const float = parseFloat(value);
+    xleft= isNaN(float) || !isFinite(float) ? 0 : float;
+  }
+  
 };
 
 window.livelyPropertyListener = livelyPropertyListener;
@@ -105,29 +116,42 @@ function main() {
     if (y * 100 < ahegaoTrigger) {
       open_mouth = true;
     }
+    const xpositiveLimit = (xright / 100) * canvas.width; 
+    const xnegativeLimit = (xleft / 100) * canvas.width; 
+
    
-    if (y === 0) {
-      eyeY = 0.5;
-    } else if (eyeY < 0.37) {
+    // Horizontal limit for eye movement and return smooth to center
+    if (x * canvas.width > xpositiveLimit || x * canvas.width < xnegativeLimit) {
+      // If the mouse is out of bounds, move the eyes back to center smooth
+      eyeX += (0.5 - eyeX) * smoothFactor;
+      eyeY += (0.5 - eyeY) * smoothFactor;
+      
+    } else if (y * canvas.height <= 0 ) {
+      
+      eyeX += (0.5 - eyeX) * smoothFactor;
+      eyeY += (0.6 - eyeY) * smoothFactor;
+      
+    } else {
+      
+      // Otherwise, the eyes follow the mouse smoothly
+      eyeX += (x - eyeX) * smoothFactor;
+      eyeY += (y - eyeY) * smoothFactor;
+    }
+    
+    if (eyeY < 0.37) {
       eyeY = 0.37;
     } else if (eyeY > 0.75) {
       eyeY = 0.75;
     }
 
-    if (x === 0) {
-      eyeX = 0.5;
-    } else if (eyeX < 0.23) {
+    if (eyeX < 0.23) {
       eyeX = 0.23;
     } else if (eyeX > 0.77) {
       eyeX = 0.77;
     }
 
-    eyeY += (y - eyeY) * smoothFactor;
-    eyeX += (x - eyeX) * smoothFactor;
-
-
     const yOffset = percent(36.5, canvas.height);
-
+    
     // this is a magical number
     const eighteenAnd675 = percent(18.675, canvas.height);
 
