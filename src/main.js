@@ -15,6 +15,10 @@ import { PI } from "./constants.js";
 const canvas = document.getElementById("canvas");
 
 let ahegaoTrigger = 39;
+let eyeX = 0.5;  // starting position  X-axis
+let eyeY = 0.5;  // starting position Y-axis
+
+const smoothFactor = 0.1;  // Fator de suavização para o movimento dos olhos
 
 /**
  * https://github.com/rocksdanister/lively/wiki/Web-Guide-IV-:-Interaction#lively-properties
@@ -96,49 +100,51 @@ function main() {
     x /= canvas.width;
     y /= canvas.height;
 
-    let open_mount = false;
+    let open_mouth = false;
 
     if (y * 100 < ahegaoTrigger) {
-      open_mount = true;
+      open_mouth = true;
     }
-
+   
     if (y === 0) {
-      y = 0.5;
-    } else if (y < 0.37) {
-      y = 0.37;
-    } else if (y > 0.75) {
-      y = 0.75;
+      eyeY = 0.5;
+    } else if (eyeY < 0.37) {
+      eyeY = 0.37;
+    } else if (eyeY > 0.75) {
+      eyeY = 0.75;
     }
 
     if (x === 0) {
-      x = 0.5;
-    } else if (x < 0.23) {
-      x = 0.23;
-    } else if (x > 0.77) {
-      x = 0.77;
+      eyeX = 0.5;
+    } else if (eyeX < 0.23) {
+      eyeX = 0.23;
+    } else if (eyeX > 0.77) {
+      eyeX = 0.77;
     }
 
-    x *= diameter;
-    y *= diameter;
+    eyeY += (y - eyeY) * smoothFactor;
+    eyeX += (x - eyeX) * smoothFactor;
+
 
     const yOffset = percent(36.5, canvas.height);
 
     // this is a magical number
     const eighteenAnd675 = percent(18.675, canvas.height);
 
+    // Draw smooth
     ctx.drawImage(
       left_eye,
-      center - eighteenAnd675 + x,
-      yOffset + y,
+      center - eighteenAnd675 + eyeX * diameter,
+      yOffset + eyeY * diameter,
       radius,
       radius
     );
 
-    ctx.drawImage(right_eye, center + x, yOffset + y, radius, radius);
+    ctx.drawImage(right_eye, center + eyeX * diameter, yOffset + eyeY * diameter, radius, radius);
 
     drawGirl(canvas, ctx);
 
-    if (open_mount) {
+    if (open_mouth) {
       drawMouth(canvas, ctx);
     }
   };
