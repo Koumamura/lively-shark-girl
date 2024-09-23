@@ -14,7 +14,7 @@
     "tick": 10,
     "text": " Limit looking right",
     "type": "slider",
-    "value": 1250
+    "value": 90
   }
 ,
 "RangeXNegativeLook":{
@@ -23,6 +23,6 @@
   "tick": 10,
   "text": " Limit looking left",
   "type": "slider",
-  "value": 65
+  "value": 10
 }
 }
