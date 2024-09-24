@@ -14,13 +14,13 @@ import { PI } from "./constants.js";
 /** @type {HTMLCanvasElement} */
 const canvas = document.getElementById("canvas");
 
-let mouthtrigger = 45;
+let mouthtrigger = 15;
 let xright = 90; //maximum limit of the mouse position on the right side of the screen, in percentage
 let xleft = 10;//maximum limit of the mouse position on the right side of the screen, in percentage
 let eyeX = 0.5;  // starting position  X-axis
 let eyeY = 0.5;  // starting position Y-axis
 
-const smoothFactor = 0.1;  // Fator de suavização para o movimento dos olhos
+const smoothFactor = 0.25;  // Fator de suavização para o movimento dos olhos
 
 /**
  * https://github.com/rocksdanister/lively/wiki/Web-Guide-IV-:-Interaction#lively-properties
@@ -112,12 +112,11 @@ function main() {
     x /= canvas.width;
     y /= canvas.height;
 
-    let open_mouth = false;
-
+    let open_mouth = mouthDetectMouse(x,y);
+    
     if (y * 100 < mouthtrigger) {
       open_mouth = true;
     }
-
 
     const xpositiveLimit = (xright / 100) * canvas.width; 
     const xnegativeLimit = (xleft / 100) * canvas.width; 
@@ -199,6 +198,40 @@ function main() {
  */
     function mapRange(value, inMin, inMax, outMin, outMax) {
       return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+  }
+
+
+  /**  Detect mouse in mouth area
+   * @param {number} centerX    - screen center X   
+   * @param {number} centerY    - screen center y   
+   * @param {number} mouseX     - Mouse Position X Normalized
+   * @param {number} mouseY     - Mouse Position y Normalized
+   * @param {number} xOffset    - Offset axis-X
+   * @param {number} yOffset    - Offset axis-Y
+   * @returns {boolean}
+   */
+  function mouthDetectMouse(mouseX, mouseY) {
+    const areaSize = 0.25; // Define the size of the area around the mouth
+    const centerX = 0.5; // Normalized value for the center X
+    const centerY = 0.5;
+
+    // Calculate the boundaries of the detection area
+    const areaLeft = centerX - (areaSize / 2) ;
+    const areaRight = centerX + (areaSize / 2) ;
+    const areaTop = centerY - (areaSize / 0.6) ;
+    const areaBottom = centerY + (areaSize / 1.6);
+
+    // Check if the mouse is within the defined area
+    let open_mouth = false;
+
+    if (mouseX > areaLeft && mouseX < areaRight && mouseY > areaTop && mouseY < areaBottom) {
+        open_mouth = true; // Mouse is within the area, mouth opens
+        console.log("Mouth is open!");
+    } else {
+        open_mouth = false; // Mouse is outside the area, mouth stays closed
+    }
+
+    return open_mouth; // Return the state of the mouth
   }
 }
 
