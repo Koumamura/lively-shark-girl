@@ -3,7 +3,7 @@
     "max": 100,
     "min": 0,
     "tick": 1,
-    "text": "Триггер открытия рта",
+    "text": "Trigger to smile",
     "type": "slider",
     "value": 39
   }
@@ -24,5 +24,5 @@
   "text": " Limit looking left",
   "type": "slider",
   "value": 10
-}
+  }
 }

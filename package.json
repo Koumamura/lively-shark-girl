@@ -14,8 +14,14 @@
   ],
   "author": "Artemis69",
   "license": "MIT",
+  "contributors": [
+    {
+      "name": "Koumamura",
+      "url": "https://github.com/Koumamura/lively-shark-girl"
+    }
+  ],
   "bugs": {
-    "url": "https://github.com/Artemis69/lively-shark-girl/issues"
+    "url": "temporarily disabled"
   },
-  "homepage": "https://github.com/Artemis69/lively-shark-girl#readme"
+  "homepage": "https://github.com/Koumamura/lively-shark-girl#readme"
 }
