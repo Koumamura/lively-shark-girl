@@ -35,6 +35,6 @@
 
   This project is based on the work of yhdgms1 with further modifications to improve/refine certain features.
 
-- Copyrights for these images our great and beautiful VTuber affiliated with Hololive Production and illustrator [amsrntk3](https://twitter.com/amsrntk3).
+- Copyrights for these images belong to our great and beautiful VTuber Gawr Gura, affiliated with Hololive. And illustrator [amsrntk3](https://twitter.com/amsrntk3).
 
 - Copyright (c) Particle-js  2.0.0  for Vincent Garreau , MIT License . [Vincent Garreau](https://github.com/VincentGarreau/particles.js?tab=MIT-1-ov-file)
