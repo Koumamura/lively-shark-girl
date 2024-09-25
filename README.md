@@ -1,27 +1,37 @@
 # Lively-Shark-Girl
 
-The Eyes-Follow Wallpapers with Shark Girl
+*The Eyes-Follow Wallpapers with Shark Girl and be careful not to devour your cursor.*
 
-## Installation
+## Installation Methods:
 
-The wallpapers could be installed by two ways:
+### 1 Install it as a website:
+  - The wallpaper is hosted on [Vercel](https://lively-shark-girl.vercel.app/)  
+  - open your lively click on add wallpaper
+  - add the app link in the url field
+     
+### 2 Automatic installation using a .bat script: (Recomended)
 
-- Install it like website. It is hosted  on [Vercel](https://lively-shark-girl.vercel.app/)
-- `git clone`, Then add these files and folders:
+   - Download the .zip file from the repository and extract the contents.
 
-  - LivelyInfo.json
-  - LivelyProperties.json
-  - index.html
-  - assets
-  - src
+   - Run the `install_wallpaper.bat` script, which will move all the files to the default folder where Lively Wallpapers stores its wallpapers.
 
-  to a .zip archive
+   - ⚠️Note: This method will only work correctly if the user has not changed Lively's default wallpaper installation folder. If the folder has been modified, you will need to manually copy the files to the correct location.
+### 3 Manual installation: 
+  - Clone the repository using the  command: ``git clone https://github.com/Koumamura/lively-shark-girl.git ``
+  - Unzip the .zip:
+  - Place the folder in the backgrounds location defined in your Lively Wallpaper
+  - Necessary files
+    - LivelyInfo.json
+    - LivelyProperties.json
+    - index.html
+    - assets/*
+    - src/*
 
 ## Copyrights
 
 - Original project by [yhdgms1](https://github.com/yhdgms1), modified by [Koumamura]. The original project can be found [here](https://github.com/yhdgms1/lively-shark-girl).
 
-This project is based on the work of yhdgms1 with further modifications to improve/refine certain features.
+  This project is based on the work of yhdgms1 with further modifications to improve/refine certain features.
 
 - Copyrights for these images belongs to someone called Gawr Gura and illustrator [amsrntk3](https://twitter.com/amsrntk3).
 

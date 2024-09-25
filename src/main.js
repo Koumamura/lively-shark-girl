@@ -200,14 +200,10 @@ function main() {
       return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
   }
 
-
   /**  Detect mouse in mouth area
-   * @param {number} centerX    - screen center X   
-   * @param {number} centerY    - screen center y   
    * @param {number} mouseX     - Mouse Position X Normalized
    * @param {number} mouseY     - Mouse Position y Normalized
-   * @param {number} xOffset    - Offset axis-X
-   * @param {number} yOffset    - Offset axis-Y
+
    * @returns {boolean}
    */
   function mouthDetectMouse(mouseX, mouseY) {
