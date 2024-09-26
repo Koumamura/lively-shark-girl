@@ -2,27 +2,43 @@
 let styleChange = 2;
 let colorBG = "#41a3d1";
 let interactiveBG = true;
-
+let TypeFilter = 4;
+let colorFilter = "#1866D6";
+let intensityFilter = 24;
+//sys
 let listenerCalled = false;
 const throttleDelay = 50; //miliseconds
 let lastCall = 0;
 
 export const livelyPropertyListener2 = (name, value) => {
     switch (name) {
-        case "colorBG":
+        case "ColorBG":
             colorBG = value;
             updateBackground(); // Updates the background when the color is changed
             break;
 
-        case "interactiveBG":
+        case "InteractiveBG":
             interactiveBG = value;
-
             updateBackground(); 
             break;
 
-        case "backgroundStyle":
+        case "BackgroundStyle":
             styleChange = value;
             updateBackground(); 
+            break;
+
+        case "MixFilters":
+            applyBlendMode(value);
+            break;
+
+        case "IntensityFilter":
+            intensityFilter = value;
+            filterColorIntensid(colorFilter, intensityFilter);
+            break;
+
+        case "ColorFilter":
+            colorFilter = value;
+            filterColorIntensid(colorFilter, intensityFilter);
             break;
 
     }
@@ -31,6 +47,10 @@ export const livelyPropertyListener2 = (name, value) => {
 if (typeof window.livelyPropertyListener == "undefined"  || listenerCalled == false) {
    
     updateBackground();
+    // pre configure filter
+    applyBlendMode(TypeFilter);
+    filterColorIntensid(colorFilter,intensityFilter);
+    console.log("nao foi chamado lively");
 }
 
 
@@ -117,3 +137,38 @@ function hexToRgb(hex) {
     return [r, g, b];
 }
 
+function mixFilter(chosen) {
+    switch (chosen) {
+        case 0:
+            return "normal";
+        case 1:
+            return "multiply";
+        case 2:
+            return "screen";
+        case 3:
+            return "overlay";
+        case 4:
+            return "lighten";
+        case 5:
+            return "color-dodge";
+        case 6:
+            return "hard-light";
+        case 7:
+            return "soft-light";
+        case 8:
+            return "hue";
+    }
+}
+
+function applyBlendMode(chosen) {
+    const blend = mixFilter(chosen);
+
+    document.querySelector('#filterLayer').style.mixBlendMode = blend;
+}
+
+function filterColorIntensid(colorHex, intensity) {
+    const element = document.getElementById('filterLayer');
+    const opacity = Math.max(0, Math.min(intensity, 100)) / 100;
+    element.style.backgroundColor = colorHex;
+    element.style.opacity = opacity;
+}

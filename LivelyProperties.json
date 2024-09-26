@@ -5,7 +5,7 @@
     "tick": 1,
     "text": "Trigger to smile",
     "type": "slider",
-    "value": 39
+    "value": 15
   }
   ,
   "RangeXPositiveLook":{
@@ -26,28 +26,60 @@
   "value": 10
   }
   ,
-  "interactiveBG":{
+  "InteractiveBG":{
     "type": "checkbox",
     "text": "Interactive background",
     "value": true
   }
   ,
-    "backgroundStyle": {
-      "type": "dropdown",
-      "value": 0,
-      "text": "Style background",
-      "items": [
+  "BackgroundStyle": {
+    "type": "dropdown",
+    "value": 0,
+    "text": "Style background",
+     "items": [
         "style 1",
         "style 2",
         "style 3",
         "style 4"
-      ]
-    }
+     ]
+  }
   ,
   
-    "colorBG": {
+    "ColorBG": {
       "text": "Background color",
       "type": "color",
       "value": "#C0C0C0"
+    }
+    ,
+    "MixFilters": {
+    "type": "dropdown",
+      "value": 4,
+      "text": "Filter walpaper",
+      "items": [
+        " Normal ",
+        " Multiply",
+        " Overlay",
+        " Screen",
+        " Lighten",
+        " Color-dodge",
+        " Hard-light",
+        " Soft-light",
+        " Hue"
+      ]
+     }
+    ,
+    "ColorFilter": {
+      "text": "Color filter",
+      "type": "color",
+      "value": "#1866D6"
+    }
+    ,
+    "IntensityFilter":{
+        "max": 100,
+        "min": 0,
+        "tick": 1,
+        "text": " Filter intensity",
+        "type": "slider",
+        "value": 24
     }
 }
