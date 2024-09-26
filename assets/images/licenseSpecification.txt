@@ -6,6 +6,7 @@ without asking permission or providing attribution.
 
 Specifically, the following images are released under CC0:
 - bolha.webp
+- florestaaquatica.webp
 
 I believe it was unnecessary to specify all this in the README, but for legal purposes and for anyone seeking the origin of 
 these assets, here is a more detailed specification.

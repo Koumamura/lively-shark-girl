@@ -1,10 +1,12 @@
 // pre config to app
 let styleChange = 2;
 let colorBG = "#41a3d1";
-let interactiveBG = true;
-let TypeFilter = 4;
-let colorFilter = "#1866D6";
-let intensityFilter = 24;
+let interactiveBG = false;
+let TypeFilter = 2;
+let colorFilter = "#4CAFD6";
+let intensityFilter = 13;
+let checkimageactive = true;
+let urlimage = "/assets/images/Background/florestaaquatica.webp"
 //sys
 let listenerCalled = false;
 const throttleDelay = 50; //miliseconds
@@ -40,17 +42,27 @@ export const livelyPropertyListener2 = (name, value) => {
             colorFilter = value;
             filterColorIntensid(colorFilter, intensityFilter);
             break;
+        case "CheckimageBG":
+            checkimageactive = value; 
+            checkBGImg(checkimageactive);          
+            break;
+        case "ImgSelect":
+            const correctedPath = value.replace(/\\/g, "/");
+            urlimage = `url(${correctedPath})`;
+            if (checkimageactive) {
+                imageBGChange(urlimage);
+            }
+            break;
 
     }
 };
 
 if (typeof window.livelyPropertyListener == "undefined"  || listenerCalled == false) {
-   
+    checkBGImg(checkimageactive);
     updateBackground();
     // pre configure filter
     applyBlendMode(TypeFilter);
     filterColorIntensid(colorFilter,intensityFilter);
-    console.log("nao foi chamado lively");
 }
 
 
@@ -73,7 +85,18 @@ function remove_mouse_interactive() {
     document.removeEventListener('mousemove', updateBackground);
     
 }
-
+/// check and recover resource 
+function checkBGImg(check){
+    if (checkimageactive) {
+        remove_mouse_interactive();
+        imageBGChange(urlimage);
+    } else if (!checkimageactive && interactiveBG) {
+        mouse_interactive();
+        imageBGChange('');
+    } else {
+        imageBGChange('');
+    }
+}
 function updateBackground(event) {
     
     if (interactiveBG) {
@@ -171,4 +194,9 @@ function filterColorIntensid(colorHex, intensity) {
     const opacity = Math.max(0, Math.min(intensity, 100)) / 100;
     element.style.backgroundColor = colorHex;
     element.style.opacity = opacity;
+}
+function imageBGChange(urlimg) {
+
+    document.querySelector('.imageBackground').style.backgroundImage = urlimg;
+
 }

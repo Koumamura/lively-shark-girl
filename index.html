@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./assets/styles/index.css" />
     <!--         Copyright (c) Particle-js 2015  for Vincent Garreau      -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="./src/particles.js" defer></script>
+    <script type="module" src="./src/particles.js" defer></script>
     <!--              -->
 
     <script type="module" src="./src/main.js" defer></script>
@@ -18,7 +18,8 @@
 
 <body>
 
-    <div class="dynamicBackground"></div> <!--  z-index  0 -->
+    <div class="dynamicBackground"></div>  <!--  z-index  0 -->
+    <div class="imageBackground"></div>   <!--  z-index  1 -->
     <div id="elementsGirl"></div>        <!--  z-index  2 -->
     <canvas id="canvas"></canvas>       <!--  z-index  3 -->
     <div id="particles-js"> </div>      <!--  z-index  4 -->

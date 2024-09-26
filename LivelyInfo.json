@@ -1,9 +1,12 @@
 {
   "AppVersion": "1.8.x.x",
+  "Thumbnail": "thumbwallp.jpg",
+  "Preview": "previewGawr.gif",
   "Title": "Gawr Gura lively Wallpaper",
   "Desc": "She will follow your cursor with her eyes",
-  "Author": "Artemiy69",
+  "Author": "Artemiy69 , Koumamura",
   "License": "MIT",
+  "Contact": "https://github.com/Koumamura/lively-shark-girl",
   "Type": 1,
   "FileName": "index.html",
   "Arguments": null,

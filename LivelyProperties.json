@@ -29,7 +29,7 @@
   "InteractiveBG":{
     "type": "checkbox",
     "text": "Interactive background",
-    "value": true
+    "value": false
   }
   ,
   "BackgroundStyle": {
@@ -71,7 +71,7 @@
     "ColorFilter": {
       "text": "Color filter",
       "type": "color",
-      "value": "#1866D6"
+      "value": "#4CAFD6"
     }
     ,
     "IntensityFilter":{
@@ -80,6 +80,20 @@
         "tick": 1,
         "text": " Filter intensity",
         "type": "slider",
-        "value": 24
+        "value": 13
+    }
+    ,
+    "CheckimageBG":{
+      "type": "checkbox",
+      "text": " Background image",
+      "value": true
+    }
+    ,
+      "ImgSelect": {
+        "type": "folderDropdown",
+        "value": "florestaaquatica.webp",
+        "text": "Image",
+        "filter": "*.jpg|*.png|*.webp",
+        "folder": "assets/images/Background"
     }
 }
