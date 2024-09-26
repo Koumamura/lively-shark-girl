@@ -222,7 +222,6 @@ function main() {
 
     if (mouseX > areaLeft && mouseX < areaRight && mouseY > areaTop && mouseY < areaBottom) {
         open_mouth = true; // Mouse is within the area, mouth opens
-        console.log("Mouth is open!");
     } else {
         open_mouth = false; // Mouse is outside the area, mouth stays closed
     }

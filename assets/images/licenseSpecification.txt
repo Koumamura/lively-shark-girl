@@ -1,0 +1,11 @@
+# License for Images
+
+All images in this project created by  (Koumamura) are released under the CC0 1.0 Universal (CC0 1.0) 
+Public Domain Dedication. This means you can copy, modify, distribute, and use these images, even for commercial purposes,
+without asking permission or providing attribution.
+
+Specifically, the following images are released under CC0:
+- bolha.webp
+
+I believe it was unnecessary to specify all this in the README, but for legal purposes and for anyone seeking the origin of 
+these assets, here is a more detailed specification.

@@ -16,6 +16,7 @@ canvas#canvas {
   background-repeat: no-repeat;
   background-position: left top, right top;
   background-size: contain;
+  filter: blur(1px);
   z-index: 2; 
 }
 /* particles.js container */
@@ -25,9 +26,27 @@ canvas#canvas {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("");
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  animation: chromaticAnimation 0.5s infinite ease-in-out;
   z-index: 3;
+}
 
+@keyframes chromaticAnimation {
+  0% {
+    filter: drop-shadow(-2px 0 rgba(255, 0, 0, 0.2)) drop-shadow(2px 0 rgba(0, 255, 255, 0.4));
+  }
+  50% {
+    filter: drop-shadow(-4px 0 rgba(255, 0, 0, 0.4)) drop-shadow(4px 0 rgba(0, 255, 255, 0.6));
+  }
+  100% {
+    filter: drop-shadow(-2px 0 rgba(255, 0, 0, 0.2)) drop-shadow(2px 0 rgba(0, 255, 255, 0.4));
+  }
+}
+
+.dynamicBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
 }

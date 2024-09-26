@@ -25,4 +25,29 @@
   "type": "slider",
   "value": 10
   }
+  ,
+  "interactiveBG":{
+    "type": "checkbox",
+    "text": "Interactive background",
+    "value": true
+  }
+  ,
+    "backgroundStyle": {
+      "type": "dropdown",
+      "value": 0,
+      "text": "Style background",
+      "items": [
+        "style 1",
+        "style 2",
+        "style 3",
+        "style 4"
+      ]
+    }
+  ,
+  
+    "colorBG": {
+      "text": "Background color",
+      "type": "color",
+      "value": "#C0C0C0"
+    }
 }
