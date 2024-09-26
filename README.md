@@ -29,6 +29,10 @@
     - assets/*
     - src/*
 
+## Customization Notice:
+
+  -⚠️ Important: Only the installation methods 2 (automatic) and 3 (manual) allow for customization of the wallpaper. If you want to modify or adjust any of the files (such as visuals, animations, or settings), you must use one of these two methods, as the website installation (method 1) does not support customization.
+
 ## Copyrights
 
 - Original project by [yhdgms1](https://github.com/yhdgms1), modified by [Koumamura]. The original project can be found [here](https://github.com/yhdgms1/lively-shark-girl).
