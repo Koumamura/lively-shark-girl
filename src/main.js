@@ -27,7 +27,7 @@ const smoothFactor = 0.25;  // Fator de suavização para o movimento dos olhos
  * @param {string} name
  * @param {string | number} value
  */
-const livelyPropertyListener = (name, value) => {
+export const livelyPropertyListener1 = (name, value) => {
   if (name === "MouthTrigger") {
     const float = parseFloat(value);
     mouthtrigger = isNaN(float) || !isFinite(float) ? 0 : float;
@@ -43,7 +43,6 @@ const livelyPropertyListener = (name, value) => {
   
 };
 
-window.livelyPropertyListener = livelyPropertyListener;
 
 /**
  * Wait till all assets are loaded

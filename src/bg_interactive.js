@@ -7,7 +7,7 @@ let listenerCalled = false;
 const throttleDelay = 50; //miliseconds
 let lastCall = 0;
 
-const livelyPropertyListener = (name, value) => {
+export const livelyPropertyListener2 = (name, value) => {
     switch (name) {
         case "colorBG":
             colorBG = value;
@@ -33,8 +33,6 @@ if (typeof window.livelyPropertyListener == "undefined"  || listenerCalled == fa
     updateBackground();
 }
 
-
-window.livelyPropertyListener = livelyPropertyListener;
 
 if (interactiveBG){
     mouse_interactive();
@@ -78,20 +76,21 @@ function updateBackground(event) {
 function styleBG(percentageY, percentageX, chosen) {
     switch (chosen) {
         case 0:
-            const purpleFactor = 1 + (percentageY / 100) * 0.8;
-            return `radial-gradient(circle at ${percentageX}% ${percentageY}%, rgba(${Math.min(80 * purpleFactor, 255)}, 0, ${Math.min(130 * purpleFactor, 255)}, 1) 0%, rgba(150, 0, 250, 1) 100%)`; // Roxo escuro e claro com radial
+            const purpleFactor = 1 + (percentageY / 100) * 0.8; 
+            return `radial-gradient(circle at ${percentageX}% ${percentageY}%,
+             rgba(${Math.min(80 * purpleFactor, 255)}, 0, ${Math.min(130 * purpleFactor, 255)}, 1) 0%, rgba(150, 0, 250, 1) 100%)`;
         
         case 1:
             const pinkFactor = 1 + (percentageX / 100) * 5;
-            return `radial-gradient(circle at ${percentageX}% ${percentageY}%, rgba(${Math.min(220* pinkFactor, 240)}, 80, 130, 1) 5%, rgba(160, 80, ${Math.min(240 * pinkFactor, 255)}, 1) 100%)`; // Rosa escuro e rosa mosqueta com radial
+            return `radial-gradient(circle at ${percentageX}% ${percentageY}%, rgba(${Math.min(220* pinkFactor, 240)}, 80, 130, 1) 5%, rgba(160, 80, ${Math.min(240 * pinkFactor, 255)}, 1) 100%)`; 
         
         case 2:
             const blueFactor = 1 + (percentageX / 40) * 0.8; 
-            return `radial-gradient(circle at ${percentageX}% ${percentageY}%, rgba(${Math.min(0 * blueFactor, 255)}, 120, 255, 1) 10%, rgba(0, ${Math.min(60 * blueFactor, 255)}, 220, 1) 100%)`; // Azul claro e escuro com radial
+            return `radial-gradient(circle at ${percentageX}% ${percentageY}%, rgba(${Math.min(0 * blueFactor, 255)}, 120, 255, 1) 10%, rgba(0, ${Math.min(60 * blueFactor, 255)}, 220, 1) 100%)`; 
         
         case 3:
             const mixedFactor = 1 + (percentageY / 100) * 0.8; 
-            return `radial-gradient(circle at ${percentageX}% ${percentageY}%, rgba(${Math.min(180 * mixedFactor, 255)}, 140, 220, 1) 12%, rgba(${Math.min(120 * mixedFactor, 255)}, 100, ${Math.min(240 * mixedFactor, 255)}, 1) 100%)`; // Rosa mosqueta e roxo claro com radial
+            return `radial-gradient(circle at ${percentageX}% ${percentageY}%, rgba(${Math.min(180 * mixedFactor, 255)}, 140, 220, 1) 12%, rgba(${Math.min(120 * mixedFactor, 255)}, 100, ${Math.min(240 * mixedFactor, 255)}, 1) 100%)`; 
         
         default:
             return '';
